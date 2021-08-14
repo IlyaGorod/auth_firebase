@@ -1,22 +1,25 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_firebase/data/authServices.dart';
 
 import 'homePage.dart';
 
 class ResultPage extends StatelessWidget{
-
-  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context){
 
     return Scaffold(
       body: Center(
-        child: FlatButton(
-          child: Text("LogOut"),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              primary: Colors.green,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(7)),
+              )),
+          child: Text("Log Out"),
           onPressed: (){
-            auth.signOut();
+            AuthService().logOut();
             Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                     builder: (context) => MyHomePage()));
